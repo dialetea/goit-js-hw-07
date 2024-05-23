@@ -15,19 +15,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
   renderGalleryItems();
 
-  gallery.addEventListener('click', function(event) {
-    event.preventDefault();
-
-    const clickedImage = event.target.closest('.gallery__image');
-
-    if (clickedImage) {
-      const largeImageUrl = clickedImage.dataset.source;
-
-      const lightbox = basicLightbox.create(`
-        <img src="${largeImageUrl}" alt="${clickedImage.alt}">
-      `);
-
-      lightbox.show();
-    }
+  const lightbox = new SimpleLightbox('.gallery a', {
+    captions: true,
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+    captionDelay: 250,
   });
 });
